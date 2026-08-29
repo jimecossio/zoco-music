@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primarios ZOCO (#b4bf00) */
+  --color-brand-primary: #b4bf00;
+  --color-brand-primary-light: #eef291;
+  --color-brand-primary-dark: #6e7500;
+
+  /* Secundarios y textos */
+  --color-brand-secondary: #1F2937;
+  --color-text-primary: #111827;
+  --color-text-body: #4B5563;
+  --color-text-muted: #9CA3AF;
+
+  /* Terceros */ 
+  --color-brand-tertiary: #FFC2F7;
+  --color-brand-tertiary-dark: #642C5B;
+
+  /* Fondo Claro / Superficies */
+  --color-bg-base: #F8FAFC;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-surface-active: #F1F5F9;
+  
+  /* Bordes */
+  --color-border-subtle: #E2E8F0;
+}
+
+/* Ocultar barra de scroll para navegación horizontal limpia */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Scrollbar moderna y sutil para la app */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-body);
+}
