@@ -3,9 +3,6 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig(({ mode }) => {
-  // Carga las variables del archivo .env
-  const env = loadEnv(mode, process.cwd(), '');
-
   return {
     plugins: [
       react(),
@@ -15,8 +12,10 @@ export default defineConfig(({ mode }) => {
         configureServer(server) {
           // Intercepta las llamadas a /api/token en desarrollo
           server.middlewares.use('/api/token', async (req, res) => {
-            const clientId = env.SPOTIFY_CLIENT_ID || process.env.SPOTIFY_CLIENT_ID;
-            const clientSecret = env.SPOTIFY_CLIENT_SECRET || process.env.SPOTIFY_CLIENT_SECRET;
+            // Carga dinámicamente las variables del archivo .env en cada petición
+            const currentEnv = loadEnv(mode, process.cwd(), '');
+            const clientId = currentEnv.SPOTIFY_CLIENT_ID || process.env.SPOTIFY_CLIENT_ID;
+            const clientSecret = currentEnv.SPOTIFY_CLIENT_SECRET || process.env.SPOTIFY_CLIENT_SECRET;
 
             if (!clientId || !clientSecret) {
               res.statusCode = 500;

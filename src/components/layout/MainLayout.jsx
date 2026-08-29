@@ -58,6 +58,21 @@ export default function MainLayout() {
           </div>
         </header>
 
+        {/* Botón de volver atrás en Desktop (solo visible en páginas de detalle como álbumes o artistas) */}
+        {showBackButton && (
+          <div className="hidden md:flex items-center px-6 md:px-8 pt-6 pb-1">
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              aria-label="Volver atrás"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bg-surface border border-border-subtle text-brand-secondary hover:bg-bg-surface-active hover:border-brand-primary-dark/40 active:scale-95 transition-all text-xs font-bold shadow-2xs cursor-pointer select-none group"
+            >
+              <ChevronLeft size={16} className="text-brand-secondary group-hover:-translate-x-0.5 transition-transform" />
+              <span>Volver</span>
+            </button>
+          </div>
+        )}
+
         <main className="flex-1 pb-36 md:pb-32">
           <Outlet />
         </main>

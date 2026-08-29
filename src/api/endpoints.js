@@ -20,19 +20,8 @@ const FEATURED_ARTIST_IDS = [
   '7ltDVBr6mKbRvohxheJ9h1', // ROSALÍA (ID verificado 200 OK)
 ];
 
-// 1. Álbumes destacados para Home (Usa lote /albums?ids=... en una sola llamada)
+// 1. Álbumes destacados para Home
 export const getFeaturedAlbums = async (token) => {
-  try {
-    const data = await spotifyFetch(`/albums?ids=${FEATURED_ALBUM_IDS.join(',')}`, token);
-    if (data?.albums?.length) {
-      return data.albums
-        .filter(Boolean)
-        .map((a) => (data._isMock ? { ...a, _isMock: true } : a));
-    }
-  } catch (err) {
-    console.warn('Fallo en lote de álbumes destacados, intentando individual:', err);
-  }
-
   const results = await Promise.allSettled(
     FEATURED_ALBUM_IDS.map((id) => spotifyFetch(`/albums/${id}`, token))
   );
@@ -42,19 +31,8 @@ export const getFeaturedAlbums = async (token) => {
     .map((res) => res.value);
 };
 
-// 2. Artistas destacados para Home (Usa lote /artists?ids=... en una sola llamada)
+// 2. Artistas destacados para Home
 export const getFeaturedArtists = async (token) => {
-  try {
-    const data = await spotifyFetch(`/artists?ids=${FEATURED_ARTIST_IDS.join(',')}`, token);
-    if (data?.artists?.length) {
-      return data.artists
-        .filter(Boolean)
-        .map((art) => (data._isMock ? { ...art, _isMock: true } : art));
-    }
-  } catch (err) {
-    console.warn('Fallo en lote de artistas destacados, intentando individual:', err);
-  }
-
   const results = await Promise.allSettled(
     FEATURED_ARTIST_IDS.map((id) => spotifyFetch(`/artists/${id}`, token))
   );
