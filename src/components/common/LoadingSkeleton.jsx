@@ -1,4 +1,4 @@
-// src/components/common/LoadingSkeleton.jsx
+
 export default function LoadingSkeleton({ count = 6, variant = 'grid' }) {
   if (variant === 'list') {
     return (
@@ -53,7 +53,6 @@ export default function LoadingSkeleton({ count = 6, variant = 'grid' }) {
     );
   }
 
-  // Default: Grid de tarjetas rectangulares/cuadradas (Álbumes)
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
       {Array.from({ length: count }).map((_, index) => (

@@ -1,4 +1,3 @@
-// src/context/PlayerContext.jsx
 import { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
 
 const PlayerContext = createContext();
@@ -15,7 +14,7 @@ export function PlayerProvider({ children }) {
   });
   const [isMuted, setIsMuted] = useState(false);
   const [isShuffled, setIsShuffled] = useState(false);
-  const [repeatMode, setRepeatMode] = useState('off'); // 'off' | 'all' | 'track'
+  const [repeatMode, setRepeatMode] = useState('off');
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
 
   const audioRef = useRef(null);
@@ -27,7 +26,6 @@ export function PlayerProvider({ children }) {
   const handleNextRef = useRef(null);
   const startSimulationTimerRef = useRef(null);
 
-  // Sincronizar referencias para callbacks y timers
   useEffect(() => {
     queueRef.current = queue;
     currentIndexRef.current = currentIndex;
@@ -46,7 +44,6 @@ export function PlayerProvider({ children }) {
     const q = queueRef.current;
     if (q.length === 0) return;
 
-    // Si terminó automáticamente (no forzado manualmente) y está en modo 'track', reiniciar la misma canción
     if (!forceNext && repeatModeRef.current === 'track') {
       seekProgress(0);
       setIsPlaying(true);
@@ -66,7 +63,7 @@ export function PlayerProvider({ children }) {
       nextIdx = currentIndexRef.current + 1;
       if (nextIdx >= q.length) {
         if (repeatModeRef.current === 'all' || repeatModeRef.current === 'track') {
-          nextIdx = 0; // Volver al inicio de la lista
+          nextIdx = 0;
         } else {
           setIsPlaying(false);
           setProgress(0);
@@ -89,7 +86,6 @@ export function PlayerProvider({ children }) {
     const q = queueRef.current;
     if (q.length === 0) return;
 
-    // Si la cola tiene un solo track, reiniciar a 0
     if (q.length === 1) {
       seekProgress(0);
       if (audioRef.current) audioRef.current.currentTime = 0;
@@ -97,14 +93,12 @@ export function PlayerProvider({ children }) {
       return;
     }
 
-    // Si la canción lleva más de 3 segundos de reproducción, reiniciar al inicio
     if (progress > 3000) {
       seekProgress(0);
       if (audioRef.current) audioRef.current.currentTime = 0;
       return;
     }
 
-    // Si está en modo aleatorio
     let prevIdx;
     if (isShuffledRef.current && q.length > 1) {
       do {
@@ -149,11 +143,9 @@ export function PlayerProvider({ children }) {
     startSimulationTimerRef.current = startSimulationTimer;
   }, [handleNext, startSimulationTimer]);
 
-  // Inicializar elemento de audio HTML5
   useEffect(() => {
     const audio = new Audio();
     audioRef.current = audio;
-    audio.volume = isMuted ? 0 : volume;
 
     const handleTimeUpdate = () => {
       if (audio.duration && !isNaN(audio.duration)) {
@@ -185,16 +177,14 @@ export function PlayerProvider({ children }) {
       audio.removeEventListener('ended', handleEnded);
       audio.removeEventListener('error', handleError);
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
-  // Sincronizar audio.loop nativo con el modo repeat
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.loop = (repeatMode === 'track');
     }
   }, [repeatMode]);
 
-  // Actualizar volumen del audio nativo
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = isMuted ? 0 : volume;
@@ -202,7 +192,6 @@ export function PlayerProvider({ children }) {
     localStorage.setItem('zoco_volume', volume.toString());
   }, [volume, isMuted]);
 
-  // Manejo de reproducción / simulación cuando no hay preview_url
   useEffect(() => {
     const audio = audioRef.current;
     if (!currentTrack) {

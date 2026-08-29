@@ -1,31 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primarios ZOCO (#b4bf00) */
+
   --color-brand-primary: #b4bf00;
   --color-brand-primary-light: #eef291;
   --color-brand-primary-dark: #6e7500;
 
-  /* Secundarios y textos */
   --color-brand-secondary: #1F2937;
   --color-text-primary: #111827;
   --color-text-body: #4B5563;
   --color-text-muted: #9CA3AF;
 
-  /* Terceros */ 
   --color-brand-tertiary: #FFC2F7;
   --color-brand-tertiary-dark: #642C5B;
 
-  /* Fondo Claro / Superficies */
   --color-bg-base: #F8FAFC;
   --color-bg-surface: #FFFFFF;
   --color-bg-surface-active: #F1F5F9;
-  
-  /* Bordes */
+
   --color-border-subtle: #E2E8F0;
 }
 
-/* Ocultar barra de scroll para navegación horizontal limpia */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -34,7 +29,6 @@
   scrollbar-width: none;
 }
 
-/* Scrollbar moderna y sutil para la app */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

@@ -1,4 +1,4 @@
-// src/context/FavoritesContext.jsx
+
 import { createContext, useContext, useEffect, useState } from 'react';
 import { getStorage, setStorage } from '../utils/storage';
 
@@ -34,7 +34,7 @@ export function FavoritesProvider({ children }) {
     if (!track?.id) return;
     setRecents((prev) => {
       const filtered = prev.filter((t) => t.id !== track.id);
-      return [track, ...filtered].slice(0, 30); // Guardar máximo las últimas 30
+      return [track, ...filtered].slice(0, 30);
     });
   }
 

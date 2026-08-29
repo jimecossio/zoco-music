@@ -1,4 +1,4 @@
-// src/components/layout/NowPlayingSidebar.jsx
+
 import {
   X,
   ChevronDown,
@@ -65,10 +65,10 @@ export default function NowPlayingSidebar() {
 
   const nextTrack = queue[currentIndex + 1];
 
-  const VolumeIcon = isMuted || volume === 0 
-    ? VolumeX 
-    : volume < 0.5 
-    ? Volume1 
+  const VolumeIcon = isMuted || volume === 0
+    ? VolumeX
+    : volume < 0.5
+    ? Volume1
     : Volume2;
 
   return (
@@ -76,9 +76,9 @@ export default function NowPlayingSidebar() {
       className="fixed inset-0 z-50 bg-bg-base overflow-y-auto p-6 md:p-6 flex flex-col justify-between md:static md:w-80 md:lg:w-96 md:bg-bg-surface md:border-l md:border-border-subtle md:shrink-0 md:h-screen md:pb-6 shadow-2xl transition-all duration-300 animate-in slide-in-from-bottom md:slide-in-from-right"
     >
       <div className="space-y-5 max-w-md mx-auto w-full md:max-w-none">
-        {/* Cabecera: ChevronDown en mobile para minimizar, X en desktop */}
+
         <div className="flex items-center justify-between pb-3 border-b border-border-subtle/80">
-          {/* Botón Minimizar (Mobile) */}
+
           <button
             type="button"
             onClick={closeSidePanel}
@@ -88,7 +88,6 @@ export default function NowPlayingSidebar() {
             <ChevronDown size={24} />
           </button>
 
-          {/* Título */}
           <div className="flex items-center gap-2 text-center md:text-left">
             <Disc size={18} className="text-brand-primary" />
             <span className="text-xs md:text-sm font-bold text-brand-secondary">
@@ -96,7 +95,6 @@ export default function NowPlayingSidebar() {
             </span>
           </div>
 
-          {/* Botón Cerrar (Solo en Desktop md+) */}
           <button
             type="button"
             onClick={closeSidePanel}
@@ -106,11 +104,9 @@ export default function NowPlayingSidebar() {
             <X size={20} />
           </button>
 
-          {/* Espaciador invisible para centrar el título en mobile */}
           <div className="w-8 md:hidden shrink-0" aria-hidden="true" />
         </div>
 
-        {/* Portada grande en alta resolución */}
         <div className="relative aspect-square w-full max-w-xs sm:max-w-sm md:max-w-none mx-auto rounded-3xl md:rounded-2xl overflow-hidden shadow-xl bg-border-subtle flex items-center justify-center group">
           {trackCover ? (
             <img
@@ -122,13 +118,11 @@ export default function NowPlayingSidebar() {
             <Music2 size={80} className="text-text-muted" />
           )}
 
-          {/* Badge de tipo de audio */}
           <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
             {currentTrack.preview_url ? 'Preview HQ' : 'Streaming'}
           </div>
         </div>
 
-        {/* Información principal de la canción */}
         <div className="space-y-2.5">
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0 flex-1">
@@ -163,7 +157,6 @@ export default function NowPlayingSidebar() {
             </button>
           </div>
 
-          {/* Barra de progreso interactiva (Deslizable / Seekable) */}
           <div className="space-y-1 pt-1">
             <input
               type="range"
@@ -181,11 +174,8 @@ export default function NowPlayingSidebar() {
           </div>
         </div>
 
-        {/* ========================================================
-            CONTROLES DE REPRODUCCIÓN (Siempre presentes en el panel)
-           ======================================================== */}
         <div className="flex items-center justify-between px-2 py-1">
-          {/* Aleatorio */}
+
           <button
             type="button"
             onClick={toggleShuffle}
@@ -201,7 +191,6 @@ export default function NowPlayingSidebar() {
             )}
           </button>
 
-          {/* Anterior */}
           <button
             type="button"
             onClick={handlePrevious}
@@ -212,7 +201,6 @@ export default function NowPlayingSidebar() {
             <SkipBack size={22} />
           </button>
 
-          {/* Play / Pause Principal */}
           <button
             type="button"
             onClick={togglePlay}
@@ -226,7 +214,6 @@ export default function NowPlayingSidebar() {
             )}
           </button>
 
-          {/* Siguiente */}
           <button
             type="button"
             onClick={handleNext}
@@ -237,7 +224,6 @@ export default function NowPlayingSidebar() {
             <SkipForward size={22} />
           </button>
 
-          {/* Repetición */}
           <button
             type="button"
             onClick={toggleRepeat}
@@ -262,7 +248,6 @@ export default function NowPlayingSidebar() {
           </button>
         </div>
 
-        {/* Control de volumen integrado en el panel */}
         <div className="flex items-center gap-2.5 px-2 py-1 text-text-muted bg-bg-surface-active/50 rounded-xl border border-border-subtle/50">
           <button
             type="button"
@@ -284,7 +269,6 @@ export default function NowPlayingSidebar() {
           />
         </div>
 
-        {/* Tarjeta de información del álbum */}
         <div className="p-3 bg-bg-surface-active/60 border border-border-subtle/70 rounded-2xl space-y-1">
           <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted">
             Álbum
@@ -306,7 +290,6 @@ export default function NowPlayingSidebar() {
           </div>
         </div>
 
-        {/* Siguiente en la cola */}
         {nextTrack && (
           <div className="space-y-1.5 pt-1">
             <h4 className="text-xs font-bold uppercase tracking-wider text-text-muted">
@@ -347,7 +330,6 @@ export default function NowPlayingSidebar() {
         )}
       </div>
 
-      {/* Footer del panel */}
       <div className="pt-4 pb-1 text-center text-xs md:text-[10px] text-text-muted border-t border-border-subtle/50">
         Reproduciendo con ZOCO Music
       </div>

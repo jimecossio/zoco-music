@@ -1,4 +1,4 @@
-// src/pages/ArtistDetail.jsx
+
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { Play, User, Flame } from 'lucide-react';
@@ -96,10 +96,9 @@ export default function ArtistDetail() {
 
   return (
     <div className="p-6 md:p-8 space-y-10 max-w-7xl mx-auto">
-      {/* Aviso de contingencia si se muestran datos mock */}
+
       {artist._isMock && <MockNoticeBanner />}
 
-      {/* 1. HERO DEL ARTISTA */}
       <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6 pb-8 border-b border-border-subtle/80">
         <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full overflow-hidden shadow-2xl bg-border-subtle shrink-0 border-4 border-bg-surface">
           {artistImage ? (
@@ -154,7 +153,6 @@ export default function ArtistDetail() {
         </div>
       </div>
 
-      {/* 2. CANCIONES POPULARES */}
       {tracks.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center gap-2">
@@ -177,7 +175,6 @@ export default function ArtistDetail() {
         </section>
       )}
 
-      {/* 3. DISCOGRAFÍA / ÁLBUMES */}
       {albums.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center justify-between">

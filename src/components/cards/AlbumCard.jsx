@@ -1,4 +1,4 @@
-// src/components/cards/AlbumCard.jsx
+
 import { useNavigate } from 'react-router-dom';
 import { Play, Disc } from 'lucide-react';
 import { usePlayer } from '../../context/PlayerContext';
@@ -30,7 +30,7 @@ export default function AlbumCard({ album }) {
     }
 
     try {
-      // 1. Si el objeto álbum ya incluye sus pistas
+
       if (album.tracks?.items?.length) {
         const fullTracks = album.tracks.items.map((t) => ({
           ...t,
@@ -41,7 +41,6 @@ export default function AlbumCard({ album }) {
         return;
       }
 
-      // 2. Si no las tiene, las obtenemos con getAlbum
       const token = await getSpotifyToken().catch(() => null);
       const albumData = await getAlbum(album.id, token);
 
@@ -53,7 +52,7 @@ export default function AlbumCard({ album }) {
         playTrack(fullTracks[0], fullTracks);
         addToRecents(fullTracks[0]);
       } else {
-        // Fallback: reproducir como pista con datos del álbum
+
         const fallbackTrack = {
           id: album.id + '_tr',
           name: album.name,
@@ -106,7 +105,6 @@ export default function AlbumCard({ album }) {
             <Disc size={36} className="text-text-muted" />
           )}
 
-          {/* Botón flotante de reproducción rápida (Solo visible al pasar el mouse) */}
           <button
             type="button"
             data-quick-play="true"

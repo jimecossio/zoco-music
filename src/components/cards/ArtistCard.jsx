@@ -1,4 +1,4 @@
-// src/components/cards/ArtistCard.jsx
+
 import { Link } from 'react-router-dom';
 import { User } from 'lucide-react';
 

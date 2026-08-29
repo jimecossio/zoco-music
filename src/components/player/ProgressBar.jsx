@@ -1,4 +1,4 @@
-// src/components/player/ProgressBar.jsx
+
 import { usePlayer } from '../../context/PlayerContext';
 import { formatDuration } from '../../utils/formatTime';
 

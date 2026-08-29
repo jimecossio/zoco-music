@@ -1,4 +1,4 @@
-// src/components/common/ErrorBoundary.jsx
+
 import React from 'react';
 import { AlertTriangle, RotateCcw } from 'lucide-react';
 

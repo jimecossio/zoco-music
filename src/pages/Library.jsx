@@ -1,4 +1,4 @@
-// src/pages/Library.jsx
+
 import { useState, useEffect } from 'react';
 import { Heart, History, Play, Trash2, Search as SearchIcon, Compass } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -17,7 +17,6 @@ export default function Library() {
   const [activeTab, setActiveTab] = useState(isFavoritesRoute ? 'favorites' : 'recents');
   const [query, setQuery] = useState('');
 
-  // Sincronizar activeTab cuando cambia la ruta en la barra de direcciones o sidebar
   useEffect(() => {
     setActiveTab(location.pathname === '/favorites' ? 'favorites' : 'recents');
   }, [location.pathname]);
@@ -47,7 +46,7 @@ export default function Library() {
 
   return (
     <div className="p-6 md:p-8 space-y-8 max-w-7xl mx-auto">
-      {/* 1. HEADER DE BIBLIOTECA */}
+
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border-subtle/80">
         <div>
           <h1 className="text-3xl sm:text-4xl font-black text-brand-secondary tracking-tight">
@@ -60,7 +59,6 @@ export default function Library() {
           </p>
         </div>
 
-        {/* Pestañas de Navegación */}
         <div className="flex items-center gap-2 bg-bg-surface p-1.5 rounded-2xl border border-border-subtle/80 shrink-0">
           <button
             type="button"
@@ -90,7 +88,6 @@ export default function Library() {
         </div>
       </div>
 
-      {/* 2. BARRA DE ACCIONES (BUSCADOR LOCAL Y BOTONES) */}
       {currentList.length > 0 && (
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="relative w-full sm:w-72">
@@ -131,7 +128,6 @@ export default function Library() {
         </div>
       )}
 
-      {/* 3. LISTADO DE CANCIONES O EMPTY STATE */}
       {filteredList.length > 0 ? (
         <div className="bg-bg-surface border border-border-subtle/70 rounded-3xl p-3 sm:p-4 divide-y divide-border-subtle/40 shadow-xs">
           {filteredList.map((track, idx) => (

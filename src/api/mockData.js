@@ -1,4 +1,3 @@
-// src/api/mockData.js
 
 const UN_VERANO_SIN_TI = {
   id: '3RQQmkQEvNCY4prGKE6oc5',
@@ -446,30 +445,28 @@ export const MOCK_ARTISTS = {
 };
 
 export function getMockResponse(endpoint) {
-  // 1. Detalle de álbum específico /albums/{id}
+
   const albumMatch = endpoint.match(/\/albums\/([a-zA-Z0-9_]+)$/);
   if (albumMatch) {
     const id = albumMatch[1];
     if (MOCK_ALBUMS[id]) {
       return MOCK_ALBUMS[id];
     }
-    // Buscar en géneros
+
     for (const list of Object.values(MOCK_GENRE_ALBUMS)) {
       const found = list.find((a) => a.id === id);
       if (found) return found;
     }
-    // Si no está por ID, retornar el primer álbum real disponible
+
     return UN_VERANO_SIN_TI;
   }
 
-  // 2. Lote de álbumes /albums?ids=...
   if (endpoint.startsWith('/albums?ids=')) {
     return {
       albums: [UN_VERANO_SIN_TI, LOVER, AFTER_HOURS, HIT_ME_HARD, MOTOMAMI, RADICAL_OPTIMISM],
     };
   }
 
-  // 3. Detalle de artista /artists/{id}
   const artistMatch = endpoint.match(/\/artists\/([a-zA-Z0-9_]+)$/);
   if (artistMatch) {
     const id = artistMatch[1];
@@ -479,26 +476,22 @@ export function getMockResponse(endpoint) {
     return MOCK_ARTISTS['06HL4z0CvFAxyc27GXpf02'];
   }
 
-  // 4. Lote de artistas /artists?ids=...
   if (endpoint.startsWith('/artists?ids=')) {
     return {
       artists: Object.values(MOCK_ARTISTS),
     };
   }
 
-  // 5. Álbumes de un artista /artists/{id}/albums
   if (endpoint.includes('/albums?include_groups=')) {
     return {
       items: [UN_VERANO_SIN_TI, LOVER, AFTER_HOURS, HIT_ME_HARD, MOTOMAMI, RADICAL_OPTIMISM],
     };
   }
 
-  // 6. Búsqueda /search?q=...
   if (endpoint.startsWith('/search?')) {
     const urlParams = new URLSearchParams(endpoint.replace('/search?', ''));
     const q = (urlParams.get('q') || '').toLowerCase();
 
-    // Búsquedas de canciones por artista
     if (q.startsWith('artist:')) {
       const artistQuery = q.replace('artist:', '').replace(/"/g, '').trim();
       const matchedArtistAlbum = Object.values(MOCK_ALBUMS).find((a) =>

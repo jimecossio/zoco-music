@@ -1,4 +1,4 @@
-// src/pages/AlbumDetail.jsx
+
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Play, Disc, Clock, Calendar, Music } from 'lucide-react';
@@ -98,10 +98,9 @@ export default function AlbumDetail() {
 
   return (
     <div className="p-6 md:p-8 space-y-10 max-w-7xl mx-auto">
-      {/* Aviso de contingencia si se muestran datos mock */}
+
       {album._isMock && <MockNoticeBanner />}
 
-      {/* 1. HEADER DEL ÁLBUM */}
       <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6 pb-8 border-b border-border-subtle/80">
         <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden shadow-2xl bg-border-subtle shrink-0">
           {albumImage ? (
@@ -170,7 +169,6 @@ export default function AlbumDetail() {
         </div>
       </div>
 
-      {/* 2. LISTA DE CANCIONES */}
       <section className="space-y-4">
         <div className="flex items-center justify-between text-xs text-text-muted font-bold uppercase tracking-wider px-4">
           <div className="flex items-center gap-3">

@@ -1,4 +1,4 @@
-// src/pages/Home.jsx
+
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search as SearchIcon, Disc, Users, Flame, Headphones, Coffee, Zap, Play } from 'lucide-react';
@@ -98,7 +98,6 @@ export default function Home() {
     };
   }, [token, tokenLoading]);
 
-  // Detectar si algún dato proviene del dataset de contingencia (Mock)
   const isUsingMock =
     albums.some((a) => a?._isMock) ||
     artists.some((art) => art?._isMock) ||
@@ -107,7 +106,6 @@ export default function Home() {
     chillAlbums.some((a) => a?._isMock) ||
     electronicAlbums.some((a) => a?._isMock);
 
-  // Mensaje de saludo dinámico según la hora del día
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) return 'Buenos días';
@@ -115,7 +113,6 @@ export default function Home() {
     return 'Buenas noches';
   };
 
-  // Reproducción instantánea desde los 6 accesos rápidos del Hero
   const handleQuickAccessPlay = async (e, item) => {
     e.stopPropagation();
 
@@ -142,7 +139,6 @@ export default function Home() {
         }
       }
 
-      // Fallback de pista única
       const fallbackTrack = {
         id: item.id + '_tr',
         name: item.title,
@@ -157,7 +153,6 @@ export default function Home() {
     }
   };
 
-  // 1. Estado de carga inicial con esqueletos
   if (tokenLoading || (loading && !error && !tokenError)) {
     return (
       <div className="p-6 md:p-8 space-y-10 max-w-7xl mx-auto">
@@ -176,7 +171,6 @@ export default function Home() {
     );
   }
 
-  // 2. Estado de error
   if (tokenError || error || !token) {
     return (
       <div className="p-6 md:p-8">
@@ -193,7 +187,6 @@ export default function Home() {
     );
   }
 
-  // Accesos rápidos de la cabecera (Exactamente 6 tarjetas)
   const quickAccessItems = [
     ...(albums.slice(0, 4).map((a) => ({
       id: a.id,
@@ -216,9 +209,9 @@ export default function Home() {
 
   return (
     <div className="p-6 md:p-8 space-y-10 max-w-7xl mx-auto">
-      {/* 1. BARRA DE BÚSQUEDA Y HERO */}
+
       <div className="space-y-4">
-        {/* Buscador interactivo en Inicio que redirige a /search al hacer clic */}
+
         <div
           onClick={() => navigate('/search')}
           role="button"
@@ -233,16 +226,13 @@ export default function Home() {
           </span>
         </div>
 
-        {/* Banner de aviso cuando se usa dataset de contingencia */}
         {isUsingMock && <MockNoticeBanner />}
 
-        {/* Cabecera del Hero con Saludo y Filtros por Género */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2">
           <h1 className="text-2xl sm:text-3xl font-black text-brand-secondary tracking-tight">
             {getGreeting()}
           </h1>
 
-          {/* Filtros tipo pills para cambiar de vistas o géneros */}
           <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
             {GENRE_FILTERS.map((filter) => (
               <button
@@ -261,7 +251,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Accesos rápidos (Estilo 6 cards de Spotify) */}
         {quickAccessItems.length > 0 && activeFilter === 'all' && (
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
             {quickAccessItems.map((item) => (
@@ -300,7 +289,6 @@ export default function Home() {
         )}
       </div>
 
-      {/* 2. ÁLBUMES DESTACADOS (O filtro pop/all) */}
       {(activeFilter === 'all' || activeFilter === 'pop') && albums.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center justify-between">
@@ -321,7 +309,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* 3. ARTISTAS POPULARES (O filtro pop/all) */}
       {(activeFilter === 'all' || activeFilter === 'pop') && artists.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center justify-between">
@@ -342,7 +329,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* 4. SECCIÓN ROCK */}
       {(activeFilter === 'all' || activeFilter === 'rock') && rockAlbums.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center justify-between">
@@ -363,7 +349,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* 5. SECCIÓN URBANO & REGGAETON */}
       {(activeFilter === 'all' || activeFilter === 'urban') && urbanAlbums.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center justify-between">
@@ -384,7 +369,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* 6. SECCIÓN CHILL & LOFI */}
       {(activeFilter === 'all' || activeFilter === 'chill') && chillAlbums.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center justify-between">
@@ -405,7 +389,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* 7. SECCIÓN ELECTRÓNICA & EDM */}
       {(activeFilter === 'all' || activeFilter === 'electronic') && electronicAlbums.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center justify-between">

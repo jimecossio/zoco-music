@@ -13,5 +13,5 @@ export function useDebounce(value, delay = 500) {
     };
   }, [value, delay]);
 
-  return debouncedValue; // Asegurate de que sea la variable de estado
+  return debouncedValue;
 }

@@ -1,4 +1,4 @@
-// src/components/cards/TrackCard.jsx
+
 import { Play, Pause, Heart, Music2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { usePlayer } from '../../context/PlayerContext';
@@ -56,9 +56,9 @@ export default function TrackCard({
           : 'hover:bg-bg-surface-active border border-transparent'
       }`}
     >
-      {/* Columna Izquierda: Índice / Play / Cover / Info */}
+
       <div className="flex items-center gap-3 min-w-0 flex-1">
-        {/* Número o Botón Play */}
+
         <div className="w-7 flex items-center justify-center shrink-0 text-text-muted font-mono text-xs">
           {isCurrentPlaying ? (
             <div className="flex items-end gap-0.5 h-3.5">
@@ -87,7 +87,6 @@ export default function TrackCard({
           )}
         </div>
 
-        {/* Portada */}
         {showCover && (
           <div className="relative w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-border-subtle flex items-center justify-center shadow-xs">
             {coverUrl ? (
@@ -103,7 +102,6 @@ export default function TrackCard({
           </div>
         )}
 
-        {/* Título y Artistas */}
         <div className="min-w-0 flex-1">
           <p
             className={`text-sm font-semibold truncate ${
@@ -128,7 +126,6 @@ export default function TrackCard({
         </div>
       </div>
 
-      {/* Columna Centro/Derecha: Álbum (opcional) */}
       {showAlbum && track.album && (
         <div className="hidden md:block flex-1 min-w-0 px-2">
           {track.album.id ? (
@@ -145,7 +142,6 @@ export default function TrackCard({
         </div>
       )}
 
-      {/* Columna Derecha: Favorito y Duración */}
       <div className="flex items-center gap-3 shrink-0">
         <button
           type="button"

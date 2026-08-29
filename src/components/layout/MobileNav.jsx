@@ -1,4 +1,4 @@
-// src/components/layout/MobileNav.jsx
+
 import { NavLink } from 'react-router-dom';
 import { Home, Search, Library, Heart } from 'lucide-react';
 

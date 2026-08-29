@@ -6,15 +6,13 @@ const BASE_URL = 'https://api.spotify.com/v1';
 
 export { getSpotifyToken };
 
-// Caché en memoria para evitar llamadas redundantes a la API de Spotify
 const responseCache = new Map();
-const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutos
+const CACHE_TTL_MS = 10 * 60 * 1000;
 
 export async function spotifyFetch(endpoint, token) {
   const cacheKey = endpoint;
   const now = Date.now();
 
-  // 1. Si existe en caché vigente, retornar de inmediato
   if (responseCache.has(cacheKey)) {
     const cached = responseCache.get(cacheKey);
     if (now - cached.timestamp < CACHE_TTL_MS) {
@@ -32,7 +30,6 @@ export async function spotifyFetch(endpoint, token) {
     }
   }
 
-  // Lugar 1: Fallo al obtener token por caída de red o servicio de autenticación
   if (!authToken) {
     const mockFallback = getMockResponse(endpoint);
     if (mockFallback) {
@@ -49,7 +46,6 @@ export async function spotifyFetch(endpoint, token) {
       },
     });
 
-    // Lugar 2: Spotify responde 429 (Límite de peticiones / cuota temporal excedida)
     if (res.status === 429) {
       console.warn(`[Spotify API 429] Cuota/Rate limit temporal de Spotify. Activando dataset local de contingencia para: ${endpoint}`);
       const mockFallback = getMockResponse(endpoint);
@@ -60,18 +56,17 @@ export async function spotifyFetch(endpoint, token) {
       }
     }
 
-    // Para 400, 401, 403, 404, 500, etc.: Dejar pasar el error real para mostrarlo en ErrorState
     if (!res.ok) {
       let errorDetail = '';
       try {
         const errData = await res.json();
         errorDetail = errData?.error?.message || '';
-      } catch {
-        // Ignorar fallo de parseo JSON
+      } catch (e) {
+        void e;
       }
 
-      const message = errorDetail 
-        ? `Error ${res.status}: ${errorDetail}` 
+      const message = errorDetail
+        ? `Error ${res.status}: ${errorDetail}`
         : `Error ${res.status}: ${res.statusText}`;
 
       throw new Error(message);
@@ -79,7 +74,6 @@ export async function spotifyFetch(endpoint, token) {
 
     const data = await res.json();
 
-    // Guardar en caché en memoria
     responseCache.set(cacheKey, {
       data,
       timestamp: now,
@@ -87,7 +81,6 @@ export async function spotifyFetch(endpoint, token) {
 
     return data;
   } catch (err) {
-    // Lugar 3: Solo activar mock ante errores reales de red (fetch fallido, conexión caída, offline)
     const isNetworkError =
       err.name === 'TypeError' ||
       err.message?.includes('fetch') ||
@@ -103,7 +96,6 @@ export async function spotifyFetch(endpoint, token) {
       }
     }
 
-    // Errores HTTP reales (401, 403, 404, etc.) se propagan directamente para manejo con ErrorState
     throw err;
   }
 }

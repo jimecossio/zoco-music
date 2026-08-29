@@ -1,4 +1,4 @@
-// src/pages/Search.jsx
+
 import { useState, useEffect } from 'react';
 import { Search as SearchIcon, X, Music, User, Disc, SlidersHorizontal } from 'lucide-react';
 import { useSpotifyToken } from '../hooks/useSpotifyToken';
@@ -101,7 +101,7 @@ export default function Search() {
 
   return (
     <div className="p-6 md:p-8 max-w-7xl mx-auto space-y-8">
-      {/* 1. BARRA DE BÚSQUEDA Y FILTROS */}
+
       <div className="space-y-4 w-full">
         <div className="relative flex items-center">
           <SearchIcon
@@ -128,10 +128,8 @@ export default function Search() {
           )}
         </div>
 
-        {/* Banner de aviso cuando los resultados de búsqueda provienen del mock */}
         {isUsingMock && hasResults && !loading && <MockNoticeBanner />}
 
-        {/* Pestañas de filtro cuando hay resultados */}
         {debouncedSearchTerm.trim() && hasResults && !loading && (
           <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
             {FILTER_TABS.map(({ id, label, icon: Icon }) => (
@@ -153,14 +151,12 @@ export default function Search() {
         )}
       </div>
 
-      {/* 2. ESTADO DE CARGA */}
       {loading && (
         <div className="space-y-6">
           <LoadingSkeleton count={4} variant="list" />
         </div>
       )}
 
-      {/* 3. ESTADO DE ERROR */}
       {!loading && error && (
         <ErrorState
           title="Error en la búsqueda"
@@ -173,7 +169,6 @@ export default function Search() {
         />
       )}
 
-      {/* 4. RESULTADOS DE BÚSQUEDA */}
       {!loading && !error && debouncedSearchTerm.trim() && (
         <div className="space-y-10">
           {!hasResults && (
@@ -184,7 +179,6 @@ export default function Search() {
             />
           )}
 
-          {/* 4.1 CANCIONES */}
           {(activeFilter === 'all' || activeFilter === 'tracks') &&
             tracks.length > 0 && (
               <section className="space-y-4">
@@ -217,7 +211,6 @@ export default function Search() {
               </section>
             )}
 
-          {/* 4.2 ARTISTAS */}
           {(activeFilter === 'all' || activeFilter === 'artists') &&
             artists.length > 0 && (
               <section className="space-y-4">
@@ -249,7 +242,6 @@ export default function Search() {
               </section>
             )}
 
-          {/* 4.3 ÁLBUMES */}
           {(activeFilter === 'all' || activeFilter === 'albums') &&
             albums.length > 0 && (
               <section className="space-y-4">
@@ -283,7 +275,6 @@ export default function Search() {
         </div>
       )}
 
-      {/* 5. EXPLORAR CATEGORÍAS (Cuando no hay término de búsqueda activo) */}
       {!debouncedSearchTerm.trim() && (
         <section className="space-y-4">
           <h2 className="text-xl sm:text-2xl font-bold text-brand-secondary">

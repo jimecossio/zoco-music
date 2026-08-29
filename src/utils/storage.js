@@ -1,4 +1,4 @@
-// src/utils/storage.js
+
 export function getStorage(key, fallback = []) {
   try {
     const raw = localStorage.getItem(key);

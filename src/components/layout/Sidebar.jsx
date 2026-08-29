@@ -1,4 +1,4 @@
-// src/components/layout/Sidebar.jsx
+
 import { NavLink } from 'react-router-dom';
 import { Home, Search, Library, Heart, User } from 'lucide-react';
 import { useFavorites } from '../../context/FavoritesContext';
@@ -16,7 +16,7 @@ export default function Sidebar() {
   return (
     <aside className="hidden md:flex flex-col w-64 bg-bg-surface border-r border-border-subtle p-5 h-screen justify-between shrink-0 select-none">
       <div className="space-y-6">
-        {/* Logo Oficial de ZOCO Music */}
+
         <div className="px-2 py-1">
           <img
             src="/logo.png"
@@ -25,7 +25,6 @@ export default function Sidebar() {
           />
         </div>
 
-        {/* Navegación Principal */}
         <nav className="space-y-1.5">
           <NavLink to="/" end className={getLinkClasses}>
             <Home size={19} />
@@ -43,10 +42,8 @@ export default function Sidebar() {
           </NavLink>
         </nav>
 
-        {/* Separador */}
         <hr className="border-border-subtle my-2" />
 
-        {/* Sección Favoritos */}
         <div className="space-y-2">
           <NavLink to="/favorites" end className={getLinkClasses}>
             {({ isActive }) => (
@@ -75,7 +72,6 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Perfil de Usuario Genérico */}
       <div className="pt-4 border-t border-border-subtle/70">
         <div className="flex items-center gap-3 p-2 rounded-2xl hover:bg-bg-surface-active transition-all cursor-pointer group select-none">
           <div className="relative w-10 h-10 rounded-full bg-brand-primary/20 text-brand-primary-dark border-2 border-brand-primary flex items-center justify-center shrink-0 shadow-xs font-bold">

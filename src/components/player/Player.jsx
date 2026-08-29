@@ -1,4 +1,4 @@
-// src/components/player/Player.jsx
+
 import {
   Play,
   Pause,
@@ -42,7 +42,6 @@ export default function Player() {
 
   const { isFavorite, toggleFavorite } = useFavorites();
 
-  // Si no hay canción o si la ventana de detalle lateral está abierta, cerramos la barra inferior
   if (!currentTrack || isSidePanelOpen) return null;
 
   const trackCover =
@@ -58,17 +57,17 @@ export default function Player() {
   const progressPercent = Math.min((progress / durationMs) * 100, 100);
   const favorite = isFavorite(currentTrack.id);
 
-  const VolumeIcon = isMuted || volume === 0 
-    ? VolumeX 
-    : volume < 0.5 
-    ? Volume1 
+  const VolumeIcon = isMuted || volume === 0
+    ? VolumeX
+    : volume < 0.5
+    ? Volume1
     : Volume2;
 
   return (
     <footer
       className="fixed bottom-16 md:bottom-0 left-0 right-0 h-16 md:h-24 bg-bg-surface/95 backdrop-blur-xl border-t border-border-subtle px-3.5 sm:px-4 md:px-6 flex items-center justify-between z-40 shadow-2xl transition-all duration-300"
     >
-      {/* Barra de progreso superior interactiva en mobile */}
+
       <div
         onClick={toggleSidePanel}
         className="absolute top-0 left-0 right-0 h-1 bg-border-subtle md:hidden cursor-pointer"
@@ -79,11 +78,8 @@ export default function Player() {
         />
       </div>
 
-      {/* ========================================================
-          VISTA MÓVIL (Limpia y minimalista: Info + Favorito + Play/Pause)
-         ======================================================== */}
       <div className="flex md:hidden items-center justify-between w-full gap-3 min-w-0">
-        {/* Info de la pista (Toca para abrir en pantalla completa) */}
+
         <div
           onClick={toggleSidePanel}
           className="flex items-center gap-3 min-w-0 flex-1 cursor-pointer select-none"
@@ -110,7 +106,6 @@ export default function Player() {
           </div>
         </div>
 
-        {/* Controles en móvil: Favorito + Play/Pause grande */}
         <div className="flex items-center gap-1.5 shrink-0">
           <button
             type="button"
@@ -139,11 +134,8 @@ export default function Player() {
         </div>
       </div>
 
-      {/* ========================================================
-          VISTA ESCRITORIO (3 Columnas completas)
-         ======================================================== */}
       <div className="hidden md:flex items-center justify-between w-full">
-        {/* 1. INFORMACIÓN DE LA CANCIÓN */}
+
         <div className="flex items-center gap-3 w-1/4 min-w-0">
           <div
             onClick={toggleSidePanel}
@@ -200,10 +192,9 @@ export default function Player() {
           </button>
         </div>
 
-        {/* 2. CONTROLES PRINCIPALES Y BARRA DE PROGRESO */}
         <div className="flex flex-col items-center justify-center gap-2 w-2/4 max-w-xl">
           <div className="flex items-center gap-5">
-            {/* Shuffle */}
+
             <button
               type="button"
               onClick={toggleShuffle}
@@ -221,7 +212,6 @@ export default function Player() {
               )}
             </button>
 
-            {/* Anterior */}
             <button
               type="button"
               onClick={handlePrevious}
@@ -232,7 +222,6 @@ export default function Player() {
               <SkipBack size={20} />
             </button>
 
-            {/* Play / Pause */}
             <button
               type="button"
               onClick={togglePlay}
@@ -246,7 +235,6 @@ export default function Player() {
               )}
             </button>
 
-            {/* Siguiente */}
             <button
               type="button"
               onClick={handleNext}
@@ -256,7 +244,6 @@ export default function Player() {
               <SkipForward size={20} />
             </button>
 
-            {/* Repeat */}
             <button
               type="button"
               onClick={toggleRepeat}
@@ -289,7 +276,6 @@ export default function Player() {
           </div>
         </div>
 
-        {/* 3. CONTROL DE VOLUMEN Y BOTÓN DE PANEL LATERAL */}
         <div className="flex w-1/4 justify-end items-center gap-3 text-text-muted">
           <button
             type="button"

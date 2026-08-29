@@ -1,4 +1,4 @@
-// src/components/player/PlayerControls.jsx
+
 import { Play, Pause, SkipBack, SkipForward, Shuffle, Repeat, Repeat1 } from 'lucide-react';
 import { usePlayer } from '../../context/PlayerContext';
 

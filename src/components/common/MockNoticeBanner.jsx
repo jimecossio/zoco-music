@@ -1,4 +1,4 @@
-// src/components/common/MockNoticeBanner.jsx
+
 import { Info } from 'lucide-react';
 
 export default function MockNoticeBanner({

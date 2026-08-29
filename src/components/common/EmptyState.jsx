@@ -1,4 +1,4 @@
-// src/components/common/EmptyState.jsx
+
 import { SearchX, FolderOpen } from 'lucide-react';
 
 export default function EmptyState({

@@ -1,4 +1,4 @@
-// src/hooks/useSpotifyToken.js
+
 import { useState, useEffect } from 'react';
 
 let cachedToken = null;

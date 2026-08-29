@@ -1,4 +1,4 @@
-// src/components/common/ErrorState.jsx
+
 import { AlertCircle, RefreshCw } from 'lucide-react';
 
 export default function ErrorState({

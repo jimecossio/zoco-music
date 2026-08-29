@@ -1,4 +1,4 @@
-// src/components/layout/MainLayout.jsx
+
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, User } from 'lucide-react';
 import Sidebar from './Sidebar';
@@ -17,14 +17,13 @@ export default function MainLayout() {
 
   return (
     <div className="flex h-screen bg-bg-base text-text-body overflow-hidden">
-      {/* Sidebar fijo para desktop */}
+
       <Sidebar />
 
-      {/* Contenedor principal scrollable */}
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-        {/* Cabecera Móvil: Flecha atrás a la izquierda (solo si es útil en páginas secundarias/detalle), Logo al centro, Perfil a la derecha */}
+
         <header className="md:hidden sticky top-0 z-30 bg-bg-base/95 backdrop-blur-md px-3.5 py-2.5 border-b border-border-subtle/80 flex items-center justify-between shadow-2xs">
-          {/* Esquina superior izquierda: Botón volver atrás (solo en vistas de detalle) */}
+
           <div className="w-9 flex items-center justify-start shrink-0">
             {showBackButton && (
               <button
@@ -38,7 +37,6 @@ export default function MainLayout() {
             )}
           </div>
 
-          {/* Centro: Logo oficial de ZOCO Music */}
           <Link to="/" className="flex items-center justify-center select-none">
             <img
               src="/logo.png"
@@ -47,7 +45,6 @@ export default function MainLayout() {
             />
           </Link>
 
-          {/* Esquina superior derecha: Avatar genérico de usuario */}
           <div className="w-9 flex items-center justify-end shrink-0">
             <div
               title="Mi Perfil"
@@ -58,7 +55,6 @@ export default function MainLayout() {
           </div>
         </header>
 
-        {/* Botón de volver atrás en Desktop (solo visible en páginas de detalle como álbumes o artistas) */}
         {showBackButton && (
           <div className="hidden md:flex items-center px-6 md:px-8 pt-6 pb-1">
             <button
@@ -78,13 +74,10 @@ export default function MainLayout() {
         </main>
       </div>
 
-      {/* Panel lateral derecho de Detalle en Grande (Reproduciendo Ahora) */}
       <NowPlayingSidebar />
 
-      {/* Player persistente global */}
       <Player />
 
-      {/* Navegación inferior solo para mobile */}
       <MobileNav />
     </div>
   );
